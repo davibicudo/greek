@@ -1,30 +1,30 @@
 #!/bin/bash
 
 declare -Ar NAME_TO_LETTER=(
-	[alpha]='Α α'
-	[beta]='Β β'
-	[gamma]='Γ γ'
-	[delta]='Δ δ'
-	[epsilon]='Ε ε'
-	[zeta]='Ζ ζ'
-	[eta]='Η η'
-	[theta]='Θ θ'
-	[iota]='Ι ι'
-	[kappa]='Κ κ'
-	[lambda]='Λ λ'
-	[mu]='Μ μ'
-	[nu]='Ν ν'
-	[xi]='Ξ ξ'
-	[omicron]='Ο ο'
-	[pi]='Π π'
-	[rho]='Ρ ρ'
-	[sigma]='Σ σ'
-	[tau]='Τ τ'
-	[upsilon]='Υ υ'
-	[phi]='Φ φ'
-	[chi]='Χ χ'
-	[psi]='Ψ ψ'
-	[omega]='Ω ω'
+	[alpha]='Α α  '
+	[beta]='Β β  '
+	[gamma]='Γ γ  '
+	[delta]='Δ δ  '
+	[epsilon]='Ε ϵ ε'
+	[zeta]='Ζ ζ  '
+	[eta]='Η η  '
+	[theta]='Θ θ ϑ'
+	[iota]='Ι ι  '
+	[kappa]='Κ κ  '
+	[lambda]='Λ λ  '
+	[mu]='Μ μ  '
+	[nu]='Ν ν  '
+	[xi]='Ξ ξ  '
+	[omicron]='Ο ο  '
+	[pi]='Π π ϖ'
+	[rho]='Ρ ρ ϱ'
+	[sigma]='Σ σ  '
+	[tau]='Τ τ  '
+	[upsilon]='Υ υ  '
+	[phi]='Φ ϕ φ'
+	[chi]='Χ χ  '
+	[psi]='Ψ ψ  '
+	[omega]='Ω ω  '
 )
 
 main () {
@@ -105,12 +105,12 @@ generate_quadruple_column_table () {
 	local col4_line="$( repeat_string '━' $(( $longest_in_col4 + 2 )) )"
 
 	# Generate header
-	local table="┏━━━━━━━━┯${col2_line}┳━━━━━━━━┯${col4_line}┓\n"
-	table+="┃ Letter │ "
-	table+="$( string_pad_right 'Name' $longest_in_col2 ' ' ) "
-	table+="┃ Letter │ "
-	table+="$( string_pad_right 'Name' $longest_in_col4 ' ' ) ┃\n"
-	table+="┣━━━━━━━━┿${col2_line}╋━━━━━━━━┿${col4_line}┫\n"
+	local table="┏━━━━━━━━━━┯${col2_line}┳━━━━━━━━━━┯${col4_line}┓\n"
+	table+="┃  Letter  │ "
+	table+="$( string_pad_right ' Name ' $longest_in_col2 ' ' ) "
+	table+="┃  Letter  │ "
+	table+="$( string_pad_right ' Name ' $longest_in_col4 ' ' ) ┃\n"
+	table+="┣━━━━━━━━━━┿${col2_line}╋━━━━━━━━━━┿${col4_line}┫\n"
 
 	# Generate body
 	for (( i=0; i<"$num_of_rows"; i+=1 )); do
@@ -125,7 +125,7 @@ generate_quadruple_column_table () {
 		fi
 	done
 	if (( ("$num_of_names" % 2) == 0 )); then
-		table+="┗━━━━━━━━┷${col2_line}┻━━━━━━━━┷${col4_line}┛"
+		table+="┗━━━━━━━━━━┷${col2_line}┻━━━━━━━━━━┷${col4_line}┛"
 	fi
 
 	echo -e "$table"
