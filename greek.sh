@@ -10,7 +10,7 @@ declare -Ar NAME_TO_LETTER=(
 	[eta]='Η η  '
 	[theta]='Θ θ ϑ'
 	[iota]='Ι ι  '
-	[kappa]='Κ κ  '
+	[kappa]='Κ κ ϰ'
 	[lambda]='Λ λ  '
 	[mu]='Μ μ  '
 	[nu]='Ν ν  '
@@ -18,7 +18,7 @@ declare -Ar NAME_TO_LETTER=(
 	[omicron]='Ο ο  '
 	[pi]='Π π ϖ'
 	[rho]='Ρ ρ ϱ'
-	[sigma]='Σ σ  '
+	[sigma]='Σ σ ς'
 	[tau]='Τ τ  '
 	[upsilon]='Υ υ  '
 	[phi]='Φ ϕ φ'
@@ -74,9 +74,9 @@ generate_double_column_table () {
 
 	# Generate header
 	local table=$( cat <<- EOF
-		┏━━━━━━━━┯${col2_line}┓
-		┃ Letter │ $( string_pad_right 'Name' $longest ' ' ) ┃
-		┣━━━━━━━━┿${col2_line}┫\n
+		┏━━━━━━━━━━┯${col2_line}┓
+		┃  Letter  │ $( string_pad_right 'Name' $longest ' ' ) ┃
+		┣━━━━━━━━━━┿${col2_line}┫\n
 		EOF
 	)
 
@@ -85,7 +85,7 @@ generate_double_column_table () {
 		table+="┃  ${NAME_TO_LETTER[$i]}   │ "
 		table+="$( string_pad_right $i $longest ' ' ) ┃\n"
 	done
-	table+="┗━━━━━━━━┷${col2_line}┛"
+	table+="┗━━━━━━━━━━┷${col2_line}┛"
 
 	echo -e "$table"
 }
@@ -117,8 +117,8 @@ generate_quadruple_column_table () {
 		table+="┃  ${NAME_TO_LETTER[${names[$i]}]}   │ "
 		table+="$( string_pad_right ${names[$i]} $longest_in_col2 ' ' ) "
 		if (( i == "$num_of_rows" - 1 )) && (( ("$num_of_names" % 2) != 0 )); then
-			table+="┣━━━━━━━━┷${col4_line}┛\n"
-			table+="┗━━━━━━━━┷${col2_line}┛"
+			table+="┣━━━━━━━━━━┷${col4_line}┛\n"
+			table+="┗━━━━━━━━━━┷${col2_line}┛"
 		else
 			table+="┃  ${NAME_TO_LETTER[${names[$(( $num_of_rows + $i ))]}]}   │ "
 			table+="$( string_pad_right ${names[$(( $num_of_rows + $i ))]} $longest_in_col4 ' ' ) ┃\n"
