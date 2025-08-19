@@ -74,18 +74,18 @@ generate_double_column_table () {
 
 	# Generate header
 	local table=$( cat <<- EOF
-		┏━━━━━━━━━━┯${col2_line}┓
-		┃  Letter  │ $( string_pad_right 'Name' $longest ' ' ) ┃
-		┣━━━━━━━━━━┿${col2_line}┫\n
+		┏━━━━━━━━┯${col2_line}┓
+		┃ Letter │ $( string_pad_right 'Name' $longest ' ' ) ┃
+		┣━━━━━━━━┿${col2_line}┫\n
 		EOF
 	)
 
 	# Generate body
 	for i in "${names[@]}"; do
-		table+="┃  ${NAME_TO_LETTER[$i]}   │ "
+		table+="┃ ${NAME_TO_LETTER[$i]}  │ "
 		table+="$( string_pad_right $i $longest ' ' ) ┃\n"
 	done
-	table+="┗━━━━━━━━━━┷${col2_line}┛"
+	table+="┗━━━━━━━━┷${col2_line}┛"
 
 	echo -e "$table"
 }
@@ -105,27 +105,27 @@ generate_quadruple_column_table () {
 	local col4_line="$( repeat_string '━' $(( $longest_in_col4 + 2 )) )"
 
 	# Generate header
-	local table="┏━━━━━━━━━━┯${col2_line}┳━━━━━━━━━━┯${col4_line}┓\n"
-	table+="┃  Letter  │ "
+	local table="┏━━━━━━━━┯${col2_line}┳━━━━━━━━┯${col4_line}┓\n"
+	table+="┃ Letter │ "
 	table+="$( string_pad_right 'Name' $longest_in_col2 ' ' ) "
-	table+="┃  Letter  │ "
+	table+="┃ Letter │ "
 	table+="$( string_pad_right 'Name' $longest_in_col4 ' ' ) ┃\n"
-	table+="┣━━━━━━━━━━┿${col2_line}╋━━━━━━━━━━┿${col4_line}┫\n"
+	table+="┣━━━━━━━━┿${col2_line}╋━━━━━━━━┿${col4_line}┫\n"
 
 	# Generate body
 	for (( i=0; i<"$num_of_rows"; i+=1 )); do
-		table+="┃  ${NAME_TO_LETTER[${names[$i]}]}   │ "
+		table+="┃ ${NAME_TO_LETTER[${names[$i]}]}  │ "
 		table+="$( string_pad_right ${names[$i]} $longest_in_col2 ' ' ) "
 		if (( i == "$num_of_rows" - 1 )) && (( ("$num_of_names" % 2) != 0 )); then
-			table+="┣━━━━━━━━━━┷${col4_line}┛\n"
-			table+="┗━━━━━━━━━━┷${col2_line}┛"
+			table+="┣━━━━━━━━┷${col4_line}┛\n"
+			table+="┗━━━━━━━━┷${col2_line}┛"
 		else
-			table+="┃  ${NAME_TO_LETTER[${names[$(( $num_of_rows + $i ))]}]}   │ "
+			table+="┃ ${NAME_TO_LETTER[${names[$(( $num_of_rows + $i ))]}]}  │ "
 			table+="$( string_pad_right ${names[$(( $num_of_rows + $i ))]} $longest_in_col4 ' ' ) ┃\n"
 		fi
 	done
 	if (( ("$num_of_names" % 2) == 0 )); then
-		table+="┗━━━━━━━━━━┷${col2_line}┻━━━━━━━━━━┷${col4_line}┛"
+		table+="┗━━━━━━━━┷${col2_line}┻━━━━━━━━┷${col4_line}┛"
 	fi
 
 	echo -e "$table"
