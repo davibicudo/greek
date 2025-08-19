@@ -107,9 +107,9 @@ generate_quadruple_column_table () {
 	# Generate header
 	local table="┏━━━━━━━━━━┯${col2_line}┳━━━━━━━━━━┯${col4_line}┓\n"
 	table+="┃  Letter  │ "
-	table+="$( string_pad_right ' Name ' $longest_in_col2 ' ' ) "
+	table+="$( string_pad_right 'Name' $longest_in_col2 ' ' ) "
 	table+="┃  Letter  │ "
-	table+="$( string_pad_right ' Name ' $longest_in_col4 ' ' ) ┃\n"
+	table+="$( string_pad_right 'Name' $longest_in_col4 ' ' ) ┃\n"
 	table+="┣━━━━━━━━━━┿${col2_line}╋━━━━━━━━━━┿${col4_line}┫\n"
 
 	# Generate body
